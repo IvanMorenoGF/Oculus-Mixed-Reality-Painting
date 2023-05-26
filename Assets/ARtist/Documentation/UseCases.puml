@@ -1,0 +1,37 @@
+@startuml UseCases
+left to right direction
+skin rose
+
+actor Player
+
+package GraffitiEdition {
+
+    usecase DrawLine
+    usecase UndoLine
+    usecase ChangeLineThickness
+    usecase ChangeLineColor
+    usecase ZoomIn
+    usecase ZoomOut
+}
+
+Player ..> DrawLine
+Player ..> UndoLine
+Player ..> ChangeLineThickness
+Player ..> ChangeLineColor
+Player ..> ZoomIn
+Player ..> ZoomOut
+
+package CanvasEdition{
+
+    usecase CreateGraffiti
+    usecase FocusGraffiti
+    usecase MoveGraffiti
+    usecase DeleteGraffiti
+
+    CreateGraffiti .> FocusGraffiti : Performs
+}
+
+Player ..> CreateGraffiti
+Player ..> FocusGraffiti 
+Player ..> MoveGraffiti
+Player ..> DeleteGraffiti
