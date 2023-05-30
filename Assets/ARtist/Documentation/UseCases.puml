@@ -4,34 +4,33 @@ skin rose
 
 actor Player
 
-package GraffitiEdition {
-
-    usecase DrawLine
-    usecase UndoLine
-    usecase ChangeLineThickness
-    usecase ChangeLineColor
-    usecase ZoomIn
-    usecase ZoomOut
-}
-
-Player ..> DrawLine
-Player ..> UndoLine
-Player ..> ChangeLineThickness
-Player ..> ChangeLineColor
-Player ..> ZoomIn
-Player ..> ZoomOut
-
 package CanvasEdition{
 
     usecase CreateGraffiti
-    usecase FocusGraffiti
-    usecase MoveGraffiti
+    usecase EnterGraffitiEdition
     usecase DeleteGraffiti
 
-    CreateGraffiti .> FocusGraffiti : Performs
+    CreateGraffiti .> EnterGraffitiEdition : Performs
+
+    package GraffitiEdition #LightGray {
+
+        usecase DrawLine
+        usecase UndoLine
+        usecase ChangeWholePosition
+        usecase ChangeWholeScale
+    }
+
+    usecase ChangeSprayThickness
+    usecase ChangeSprayColor
 }
 
+
 Player ..> CreateGraffiti
-Player ..> FocusGraffiti 
-Player ..> MoveGraffiti
+Player ..> EnterGraffitiEdition
 Player ..> DeleteGraffiti
+Player ..> ChangeSprayThickness
+Player ..> ChangeSprayColor
+Player ..> DrawLine
+Player ..> UndoLine
+Player ..> ChangeWholePosition
+Player ..> ChangeWholeScale
