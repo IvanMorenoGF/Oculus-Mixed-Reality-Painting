@@ -1,0 +1,29 @@
+@startuml GraffitiEditionAnalysis
+skin rose
+
+entity SprayCan
+entity Graffiti
+entity Line
+
+control DrawLine
+control UndoLine
+
+boundary LineView as "Line"
+boundary Nozzle
+boundary NozzleButton
+boundary UndoInput
+
+Graffiti *-- Line
+
+DrawLine .u. Nozzle
+UndoLine -- Graffiti
+DrawLine -- Graffiti
+DrawLine -- SprayCan
+DrawLine -- Line
+
+UndoInput --> UndoLine
+NozzleButton --> DrawLine
+LineView -- Line
+DrawLine .u. LineView
+
+@enduml
